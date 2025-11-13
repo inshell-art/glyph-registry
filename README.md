@@ -35,7 +35,7 @@ A **glyph** is a graphical symbol that carries meaning on sight. Here every **H
 
 **Where Hooks come in**: a Hook is a tiny contract that returns either raw SVG **literal** data **or auxiliary values** that other hooks can consume. External contracts—or the Glyph Hub—call these Hooks, stitch the strings, and instantly deliver a complete FoC image. No off‑chain renderer, no hidden asset store: **the blockchain itself hosts, composes, and serves the art.**
 
-### 1.6 · How GLYPH Super‑charges FoC · How GLYPH Super‑charges FoC
+### 1.6 · How GLYPH Super‑charges FoC
 
 GLYPH turns FoC SVGs into **modular Legos**. Each Hook is a sealed SVG fragment **or utility module**; any contract can assemble them at view‑time, letting NFTs evolve, reflect on‑chain data, or adopt fresh renderers without altering the originals. **GLYPH makes FoC art not just permanent but living and composable.**
 
@@ -46,12 +46,14 @@ GLYPH turns FoC SVGs into **modular Legos**. Each Hook is a sealed SVG fragment 
 ```cairo
 #[starknet::interface]
 trait IHook<T> {
-    fn render(self: @T, params: Array::<felt252>) -> Array::<felt252>;
+    fn render(self: @T, params: Span::<felt252>) -> Array::<felt252>;
     fn metadata(self: @T) -> Span::<felt252>;
 }
 ```
 
 If your contract implements this, it **is** a Glyph Hook—no further permission needed.
+
+`params` is a `Span` so callers pass read‑only calldata; Hooks should only read and encode the SVG bytes they return in the `Array`.
 
 ---
 
@@ -78,7 +80,7 @@ _The file is machine‑readable; GUIs and wallets consume it in one request._
 | **Clone**       | `git clone https://github.com/glyph-art/glyph-registry`             |
 | **List hooks**  | `cat hooks.yml`                                                     |
 | **Call a hook** | Use `starkli`, `starknet.py`, etc. with the address + packed params |
-| **Compose**     | Call `GlyphHub.composite([hooks], [params])` as a free `view`       |
+| **Compose**     | Wire the hooks yourself for now; GlyphHub view ships post‑v1        |
 
 ---
 
@@ -88,10 +90,10 @@ Experienced dev? Just fork and add a stanza to [`hooks.yml`](./hooks.yml). Detai
 
 ---
 
-## 6 · Roadmap Sketch · Roadmap Sketch
+## 6 · Roadmap Sketch
 
-- **v1 (now)** — registry + reference Hub.
-- **v2** — optional `IHookV2` with media‑type flag & royalty view.
+- **v1 (now)** — plain registry (`hooks.yml`) only.
+- **v2** — reference GlyphHub contract with `composite()` view + optional `IHookV2` media flag & royalty view.
 - **v3** — DAO‑governed schema evolution, payout router, GUI spellbook.
 
 ---

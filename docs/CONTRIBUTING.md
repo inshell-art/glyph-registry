@@ -35,10 +35,14 @@ Append a YAML stanza at the end of the list:
     Returns an SVG linear‑gradient. Params: hue (0–360), steps (2–32).
   example:
     call: "[200,10]" # ABI‑encoded felts
-    svg: "https://ipfs.io/ipfs/QmExample"
+    how_to_run: |
+      sncast --network mainnet call \
+        --address 0x0123abcd... \
+        --function render \
+        --calldata 200 10
 ```
 
-**Required keys:** `name`, `contract`, `network`, `repo`, `description`.
+**Required keys:** `name`, `contract`, `network`, `repo`, `description`. The `example` block is optional but encouraged—pack the calldata you use most often and show others exactly how to reproduce the raw `<svg>` output over RPC instead of pasting an IPFS preview.
 
 ---
 
@@ -58,7 +62,7 @@ In the PR description include:
 
 1. Contract address and network.
 2. One‑line what the Hook does.
-3. Sample call parameters → rendered SVG link.
+3. Sample call parameters + CLI/RPC command to reproduce the raw `<svg>` output (e.g., `sncast call ...`).
 
 ---
 

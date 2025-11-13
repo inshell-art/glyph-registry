@@ -14,4 +14,8 @@
 #     and its expected params.
 #   example:
 #     call: "[param1, param2]"       # encoded felts
-#     svg:  "https://ipfs.io/ipfs/QmExample"   # or `result:` for non-SVG hooks
+#     how_to_run: |
+#       sncast --network mainnet call \
+#         --address 0x0123abcd... \
+#         --function render \
+#         --calldata param1 param2
