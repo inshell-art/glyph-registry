@@ -1,11 +1,12 @@
 # GLYPH Registry — hooks.yml
 # ------------------------------------------------------------
-# Add new entries via PR. Each stanza must include **name, contract,
+# Add new entries via PR. Each stanza must include **name, kind, contract,
 # network, repo, description**.  Delete the leading “#” on your stanza.
 # Each stanza describes one glyph implementing `IGlyph`.
 # ------------------------------------------------------------
 
 # - name: ExampleGlyph               # unique, no spaces
+#   kind: svg                        # svg | utility | palette | layout | other
 #   author: "@yourhandle"            # optional GitHub or ENS
 #   contract: "0x0123abcd…"          # Starknet address (0x… hex)
 #   network: "starknet-mainnet"      # or starknet-testnet

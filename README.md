@@ -21,7 +21,9 @@ choose parameters and let someone else handle the deployment.
 
 1. **Composability ▸** any contract can call any glyph via one tiny interface.
 2. **Openness ▸** anyone may publish; the registry is a public YAML file.
-3. **Immutability ▸** glyph contracts never mutate once deployed.
+3. **Immutability ▸** glyph contracts are intended to behave immutably once
+   registered. If behaviour changes, the author deploys a new contract and
+   adds a new stanza with a new version, rather than upgrading the old one.
 4. **Minimalism ▸** one trait, two functions; extras are bolt‑ons.
 5. **Transparency ▸** all metadata lives in plain text; nothing proprietary.
 
@@ -80,11 +82,22 @@ Each entry is one stanza, e.g.:
 
 ```yaml
 - name: GradientGlyph
+  kind: svg
   contract: "0x0123abcd…"
   network: "starknet-mainnet"
   repo: "https://github.com/yourhandle/gradient-glyph"
   description: "Returns an SVG linear‑gradient fragment."
 ```
+
+Each glyph entry in `hooks.yml` has the following fields:
+
+- `name` — unique glyph name, no spaces.
+- `kind` — coarse category, e.g. `svg`, `utility`, `palette`, `layout`, or `other`.
+- `author` — optional GitHub/ENS handle.
+- `contract` — Starknet contract address (0x… hex).
+- `network` — network identifier (e.g. `starknet-sepolia`).
+- `repo` — URL to the glyph’s source code repository.
+- `description` — short explanation of what the glyph returns and how to call it.
 
 _The file is machine‑readable; GUIs and wallets consume it in one request._
 
@@ -115,6 +128,16 @@ List glyphs: `cat hooks.yml`
 ## 5 · Contribute a Glyph
 
 Add a stanza for your glyph in [`hooks.yml`](./hooks.yml) and keep the repo link alive so others can learn from it. Step‑by‑step notes live in [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
+
+### Publishing a glyph
+
+To publish a glyph to the registry:
+
+1. Deploy your glyph contract implementing `IGlyph` on Starknet.
+2. Add a stanza to `hooks.yml` with at least: `name, kind, contract, network, repo, description`.
+3. Open a PR.
+
+Glyphs in this registry are expected to behave immutably once deployed. If you need to change behaviour, deploy a new contract and add a new stanza with a new version. Upgradeable / proxy glyphs are discouraged and must be clearly disclosed if they are ever used.
 
 ---
 
