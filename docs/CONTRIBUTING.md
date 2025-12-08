@@ -1,22 +1,32 @@
-# Contributing a Hook to GLYPH
+# Contributing to GLYPH
 
-Thank you for adding a new **glyph** to the registry! Your contract code stays in your own repo. This project only stores a pointer and metadata.
+GLYPH is closer to a shared sketchbook than a platform.
+
+If you deploy a contract that implements `IGlyph` and add a stanza to
+`hooks.yml`, you’re in. There is no curation gate; the only rules are:
+
+- Your contract is immutable (or behaves immutably for `render`).
+- Your description is honest about what it returns and how to call it.
+- You keep the repo link alive so others can learn from and fork it.
+
+Inshell is seeding the first glyphs (PATH-look, THOUGHT-look, AWA-look, etc.),
+but the ecosystem only becomes interesting when many voices draw here.
 
 ---
 
 ## 1 Prerequisites
 
-- A deployed Starknet contract that implements the `IHook` interface.
-- A public repository containing the Hook’s source and README.
+- A deployed Starknet contract that implements the `IGlyph` interface.
+- A public repository containing the glyph’s source and README.
 
 ---
 
 ## 2 Fork & Branch
 
 ```bash
-git clone https://github.com/glyph-art/glyph-registry.git
+git clone https://github.com/inshell-art/glyph-registry.git
 cd glyph-registry
-git checkout -b add/my-gradient-hook
+git checkout -b add/my-gradient-glyph
 ```
 
 ---
@@ -26,11 +36,11 @@ git checkout -b add/my-gradient-hook
 Append a YAML stanza at the end of the list:
 
 ```yaml
-- name: GradientHook
+- name: GradientGlyph
   author: "@yourhandle"
   contract: "0x0123abcd…"
   network: "starknet-mainnet" # or starknet-testnet
-  repo: "https://github.com/yourhandle/gradient-hook"
+  repo: "https://github.com/yourhandle/gradient-glyph"
   description: |
     Returns an SVG linear‑gradient. Params: hue (0–360), steps (2–32).
   example:
@@ -50,8 +60,8 @@ Append a YAML stanza at the end of the list:
 
 ```bash
 git add hooks.yml
-git commit -m "feat: add GradientHook registry entry"
-git push origin add/my-gradient-hook
+git commit -m "feat: add GradientGlyph registry entry"
+git push origin add/my-gradient-glyph
 ```
 
 ---
@@ -61,7 +71,7 @@ git push origin add/my-gradient-hook
 In the PR description include:
 
 1. Contract address and network.
-2. One‑line what the Hook does.
+2. One‑line what the glyph does.
 3. Sample call parameters + CLI/RPC command to reproduce the raw `<svg>` output (e.g., `sncast call ...`).
 
 ---
@@ -78,11 +88,11 @@ A maintainer merges once checks are green. Your glyph becomes discoverable acros
 
 ---
 
-### Updating or Deprecating a Hook
+### Updating or Deprecating a Glyph
 
 | Scenario        | Action                                                    |
 | --------------- | --------------------------------------------------------- |
-| **New version** | Deploy new contract → add a new entry (`GradientHookV2`). |
+| **New version** | Deploy new contract → add a new entry (`GradientGlyphV2`). |
 | **Retiring**    | Open a PR marking the entry with `status: deprecated`.    |
 
 That’s it—thanks for sealing another mark on‑chain! 🎨

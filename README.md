@@ -1,20 +1,27 @@
 # **GLYPH** — **G**raphic **L**edger **Y**ielding  **P**rogrammable **H**yperstructures
 
-_A lightweight registry of composable on‑chain SVG hooks for Starknet_
+_A lightweight registry of composable on‑chain SVG glyphs for Starknet_
 
 ---
 
 ## 0 · What Is Glyph?
 
-A **glyph** is a graphical symbol that carries meaning on sight. Here every **Hook contract** is such a glyph—an immutable on‑chain function that either emits an SVG fragment **or provides utility data** (e.g., random numbers) useful for SVG composition. By composing hooks, creators cast larger visual spells.
+A **glyph** is a graphical symbol that carries meaning on sight. Here every glyph
+contract is such a glyph—an immutable on‑chain function that either emits an
+SVG fragment **or provides utility data** (e.g., random numbers) useful for SVG
+composition. By composing glyphs, creators cast larger visual spells.
+
+You don’t have to be a Cairo wizard to take part. Many glyphs will be written
+by devs working with artists; others may be templated so non‑dev artists can
+choose parameters and let someone else handle the deployment.
 
 ---
 
 ## 1 · First Principles
 
-1. **Composability ▸** any contract can call any Hook via one tiny interface.
+1. **Composability ▸** any contract can call any glyph via one tiny interface.
 2. **Openness ▸** anyone may publish; the registry is a public YAML file.
-3. **Immutability ▸** Hooks never mutate once deployed.
+3. **Immutability ▸** glyph contracts never mutate once deployed.
 4. **Minimalism ▸** one trait, two functions; extras are bolt‑ons.
 5. **Transparency ▸** all metadata lives in plain text; nothing proprietary.
 
@@ -33,11 +40,20 @@ A **glyph** is a graphical symbol that carries meaning on sight. Here every **H
 - **Universal reader** – browsers and wallets natively handle `data:image/svg+xml`.
 - **String‑friendly** – smart contracts build or tweak the markup with simple concatenation.
 
-**Where Hooks come in**: a Hook is a tiny contract that returns either raw SVG **literal** data **or auxiliary values** that other hooks can consume. External contracts—or the Glyph Hub—call these Hooks, stitch the strings, and instantly deliver a complete FoC image. No off‑chain renderer, no hidden asset store: **the blockchain itself hosts, composes, and serves the art.**
+**Where glyphs come in**: a glyph contract is a tiny program that returns either raw SVG **literal** data **or auxiliary values** that other glyphs can consume. External contracts—or the Glyph Hub—call these glyphs, stitch the strings, and instantly deliver a complete FoC image. No off‑chain renderer, no hidden asset store: **the blockchain itself hosts, composes, and serves the art.**
 
 ### 1.6 · How GLYPH Super‑charges FoC
 
-GLYPH turns FoC SVGs into **modular Legos**. Each Hook is a sealed SVG fragment **or utility module**; any contract can assemble them at view‑time, letting NFTs evolve, reflect on‑chain data, or adopt fresh renderers without altering the originals. **GLYPH makes FoC art not just permanent but living and composable.**
+GLYPH turns FoC SVGs into **modular Legos**. Each glyph is a sealed SVG fragment **or utility module**; any contract can assemble them at view‑time, letting NFTs evolve, reflect on‑chain data, or adopt fresh renderers without altering the originals. **GLYPH makes FoC art not just permanent but living and composable.**
+
+### 1.7 · Seeding the Field
+
+GLYPH is not a platform or marketplace. It is a small shared field that Inshell
+is helping to seed.
+
+The first glyphs live here to serve Inshell’s own works—PATH and the serial
+triptych THOUGHT · WILL · AWA—but nothing in the registry is “Inshell‑only”.
+Any artist or dev can plant a new glyph beside them and let others call it.
 
 ---
 
@@ -45,15 +61,16 @@ GLYPH turns FoC SVGs into **modular Legos**. Each Hook is a sealed SVG fragment 
 
 ```cairo
 #[starknet::interface]
-trait IHook<T> {
+trait IGlyph<T> {
     fn render(self: @T, params: Span::<felt252>) -> Array::<felt252>;
     fn metadata(self: @T) -> Span::<felt252>;
 }
 ```
 
-If your contract implements this, it **is** a Glyph Hook—no further permission needed.
+If your contract implements this, it **is** a Glyph—no further permission needed.
 
-`params` is a `Span` so callers pass read‑only calldata; Hooks should only read and encode the SVG bytes they return in the `Array`.
+`params` is a `Span` so callers pass read‑only calldata; glyphs should only read
+and encode the SVG bytes (or other data) they return in the `Array`.
 
 ---
 
@@ -62,10 +79,10 @@ If your contract implements this, it **is** a Glyph Hook—no further permission
 Each entry is one stanza, e.g.:
 
 ```yaml
-- name: GradientHook
+- name: GradientGlyph
   contract: "0x0123abcd…"
   network: "starknet-mainnet"
-  repo: "https://github.com/yourhandle/gradient-hook"
+  repo: "https://github.com/yourhandle/gradient-glyph"
   description: "Returns an SVG linear‑gradient fragment."
 ```
 
@@ -73,33 +90,46 @@ _The file is machine‑readable; GUIs and wallets consume it in one request._
 
 ---
 
-## 4 · Quick‑Start for Developers
+## 4 · Three Ways to Join
 
-| Action          | Command                                                             |
-| --------------- | ------------------------------------------------------------------- |
-| **Clone**       | `git clone https://github.com/glyph-art/glyph-registry`             |
-| **List hooks**  | `cat hooks.yml`                                                     |
-| **Call a hook** | Use `starkli`, `starknet.py`, etc. with the address + packed params |
-| **Compose**     | Wire the hooks yourself for now; GlyphHub view ships post‑v1        |
+1. Use an existing glyph  
+   Call any glyph in `hooks.yml` from your own contract. Start with the ones
+   Inshell ships (e.g. PATH‑look once live), pass in your params, and render
+   a FoC SVG without touching the internals.
+
+2. Fork and remix  
+   Each glyph in the registry links to its repo. Fork one, tweak the look or
+   behaviour, deploy your own contract, and point a new stanza at it.
+
+3. Publish a new glyph  
+   Add a single stanza to `hooks.yml` via PR. No token, no gate, no platform
+   accounts—just a public text file other contracts can read.
+
+### Dev shortcut
+
+Clone: `git clone https://github.com/inshell-art/glyph-registry`  
+List glyphs: `cat hooks.yml`
 
 ---
 
-## 5 · Contribute a Hook
+## 5 · Contribute a Glyph
 
-Experienced dev? Just fork and add a stanza to [`hooks.yml`](./hooks.yml). Detailed steps live in [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
+Add a stanza for your glyph in [`hooks.yml`](./hooks.yml) and keep the repo link alive so others can learn from it. Step‑by‑step notes live in [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
 
 ---
 
 ## 6 · Roadmap Sketch
 
-- **v1 (now)** — plain registry (`hooks.yml`) only.
-- **v2** — reference GlyphHub contract with `composite()` view + optional `IHookV2` media flag & royalty view.
-- **v3** — DAO‑governed schema evolution, payout router, GUI spellbook.
+- **v1 (now)** — plain text registry (`hooks.yml`) only.
+- **v2** — optional GlyphHub reference contract with `composite()` view; still no
+  central service, just more examples of how to compose glyphs.
+- **v3** — if there’s interest, a small community process (maybe a DAO) for schema
+  changes and a simple “spellbook” viewer. No protocol token planned here.
 
 ---
 
 ### License
 
-Docs and registry under MIT; Hook authors choose their own licences in their respective repos.
+Docs and registry under MIT; glyph authors choose their own licences in their respective repos.
 
 > **Every glyph is a module · Every module is a spell · Combine freely.**

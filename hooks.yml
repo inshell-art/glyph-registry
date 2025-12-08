@@ -2,15 +2,16 @@
 # ------------------------------------------------------------
 # Add new entries via PR. Each stanza must include **name, contract,
 # network, repo, description**.  Delete the leading “#” on your stanza.
+# Each stanza describes one glyph implementing `IGlyph`.
 # ------------------------------------------------------------
 
-# - name: ExampleHook                # unique, no spaces
+# - name: ExampleGlyph               # unique, no spaces
 #   author: "@yourhandle"            # optional GitHub or ENS
 #   contract: "0x0123abcd…"          # Starknet address (0x… hex)
 #   network: "starknet-mainnet"      # or starknet-testnet
-#   repo: "https://github.com/you/example-hook"
+#   repo: "https://github.com/you/example-glyph"
 #   description: |
-#     One-line summary of what the hook returns
+#     One-line summary of what the glyph returns
 #     and its expected params.
 #   example:
 #     call: "[param1, param2]"       # encoded felts
