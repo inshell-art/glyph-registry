@@ -78,7 +78,7 @@ and encode the SVG bytes (or other data) they return in the `Array`.
 
 ## 3 · Registry (`hooks.yml`)
 
-Each entry is one stanza, e.g.:
+Each entry is one stanza with `name, kind, contract, network, repo, description`, e.g.:
 
 ```yaml
 - name: GradientGlyph

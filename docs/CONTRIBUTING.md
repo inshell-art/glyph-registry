@@ -37,6 +37,7 @@ Append a YAML stanza at the end of the list:
 
 ```yaml
 - name: GradientGlyph
+  kind: svg
   author: "@yourhandle"
   contract: "0x0123abcd…"
   network: "starknet-mainnet" # or starknet-testnet
@@ -52,7 +53,7 @@ Append a YAML stanza at the end of the list:
         --calldata 200 10
 ```
 
-**Required keys:** `name`, `contract`, `network`, `repo`, `description`. The `example` block is optional but encouraged—pack the calldata you use most often and show others exactly how to reproduce the raw `<svg>` output over RPC instead of pasting an IPFS preview.
+**Required keys:** `name`, `kind`, `contract`, `network`, `repo`, `description`. The `example` block is optional but encouraged—pack the calldata you use most often and show others exactly how to reproduce the raw `<svg>` output over RPC instead of pasting an IPFS preview.
 
 ---
 
