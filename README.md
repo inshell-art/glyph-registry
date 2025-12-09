@@ -76,7 +76,7 @@ and encode the SVG bytes (or other data) they return in the `Array`.
 
 ---
 
-## 3 · Registry (`hooks.yml`)
+## 3 · Registry (`glyphs.yml`)
 
 Each entry is one stanza with `name, kind, contract, network, repo, description`, e.g.:
 
@@ -89,7 +89,7 @@ Each entry is one stanza with `name, kind, contract, network, repo, description`
   description: "Returns an SVG linear‑gradient fragment."
 ```
 
-Each glyph entry in `hooks.yml` has the following fields:
+Each glyph entry in `glyphs.yml` has the following fields:
 
 - `name` — unique glyph name, no spaces.
 - `kind` — coarse category, e.g. `svg`, `utility`, `palette`, `layout`, or `other`.
@@ -106,7 +106,7 @@ _The file is machine‑readable; GUIs and wallets consume it in one request._
 ## 4 · Three Ways to Join
 
 1. Use an existing glyph  
-   Call any glyph in `hooks.yml` from your own contract. Start with the ones
+   Call any glyph in `glyphs.yml` from your own contract. Start with the ones
    Inshell ships (e.g. PATH‑look once live), pass in your params, and render
    a FoC SVG without touching the internals.
 
@@ -115,26 +115,26 @@ _The file is machine‑readable; GUIs and wallets consume it in one request._
    behaviour, deploy your own contract, and point a new stanza at it.
 
 3. Publish a new glyph  
-   Add a single stanza to `hooks.yml` via PR. No token, no gate, no platform
+   Add a single stanza to `glyphs.yml` via PR. No token, no gate, no platform
    accounts—just a public text file other contracts can read.
 
 ### Dev shortcut
 
 Clone: `git clone https://github.com/inshell-art/glyph-registry`  
-List glyphs: `cat hooks.yml`
+List glyphs: `cat glyphs.yml`
 
 ---
 
 ## 5 · Contribute a Glyph
 
-Add a stanza for your glyph in [`hooks.yml`](./hooks.yml) and keep the repo link alive so others can learn from it. Step‑by‑step notes live in [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
+Add a stanza for your glyph in [`glyphs.yml`](./glyphs.yml) and keep the repo link alive so others can learn from it. Step‑by‑step notes live in [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
 
 ### Publishing a glyph
 
 To publish a glyph to the registry:
 
 1. Deploy your glyph contract implementing `IGlyph` on Starknet.
-2. Add a stanza to `hooks.yml` with at least: `name, kind, contract, network, repo, description`.
+2. Add a stanza to `glyphs.yml` with at least: `name, kind, contract, network, repo, description`.
 3. Open a PR.
 
 Glyphs in this registry are expected to behave immutably once deployed. If you need to change behaviour, deploy a new contract and add a new stanza with a new version. Upgradeable / proxy glyphs are discouraged and must be clearly disclosed if they are ever used.
@@ -143,7 +143,7 @@ Glyphs in this registry are expected to behave immutably once deployed. If you n
 
 ## 6 · Roadmap Sketch
 
-- **v1 (now)** — plain text registry (`hooks.yml`) only.
+- **v1 (now)** — plain text registry (`glyphs.yml`) only.
 - **v2** — optional GlyphHub reference contract with `composite()` view; still no
   central service, just more examples of how to compose glyphs.
 - **v3** — if there’s interest, a small community process (maybe a DAO) for schema

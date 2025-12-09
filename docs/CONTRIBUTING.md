@@ -3,7 +3,7 @@
 GLYPH is closer to a shared sketchbook than a platform.
 
 If you deploy a contract that implements `IGlyph` and add a stanza to
-`hooks.yml`, you’re in. There is no curation gate; the only rules are:
+`glyphs.yml`, you’re in. There is no curation gate; the only rules are:
 
 - Your contract is immutable (or behaves immutably for `render`).
 - Your description is honest about what it returns and how to call it.
@@ -31,7 +31,7 @@ git checkout -b add/my-gradient-glyph
 
 ---
 
-## 3 Add an Entry to `hooks.yml`
+## 3 Add an Entry to `glyphs.yml`
 
 Append a YAML stanza at the end of the list:
 
@@ -62,7 +62,7 @@ The `example` block is optional but encouraged—pack the calldata you use most 
 ## 4 Commit & Push
 
 ```bash
-git add hooks.yml
+git add glyphs.yml
 git commit -m "feat: add GradientGlyph registry entry"
 git push origin add/my-gradient-glyph
 ```
@@ -83,7 +83,7 @@ In the PR description include:
 
 The PR will pass if:
 
-1. `hooks.yml` is valid YAML.
+1. `glyphs.yml` is valid YAML.
 2. `name` and `contract` are unique.
 3. `repo` URL returns HTTP 200.
 
