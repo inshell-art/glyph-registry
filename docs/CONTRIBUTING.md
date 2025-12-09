@@ -40,7 +40,7 @@ Append a YAML stanza at the end of the list:
   kind: svg
   author: "@yourhandle"
   contract: "0x0123abcd…"
-  network: "starknet-mainnet" # or starknet-testnet
+  network: "starknet-mainnet"  # or starknet-testnet
   repo: "https://github.com/yourhandle/gradient-glyph"
   description: |
     Returns an SVG linear‑gradient. Params: hue (0–360), steps (2–32).
@@ -53,7 +53,9 @@ Append a YAML stanza at the end of the list:
         --calldata 200 10
 ```
 
-**Required keys:** `name`, `kind`, `contract`, `network`, `repo`, `description`. The `example` block is optional but encouraged—pack the calldata you use most often and show others exactly how to reproduce the raw `<svg>` output over RPC instead of pasting an IPFS preview.
+**Required keys:** `name`, `kind`, `contract`, `network`, `repo`, `description`.
+`kind` is a coarse category for tooling: `svg`, `utility`, `palette`, `layout`, or `other`.
+The `example` block is optional but encouraged—pack the calldata you use most often and show others exactly how to reproduce the raw `<svg>` output over RPC instead of pasting an IPFS preview.
 
 ---
 
