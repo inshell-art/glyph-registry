@@ -57,8 +57,6 @@ Append a YAML stanza at the end of the list:
 `kind` is a coarse category for tooling: `svg`, `utility`, `palette`, `layout`, or `other`.
 The `example` block is optional but encouraged—pack the calldata you use most often and show others exactly how to reproduce the raw `<svg>` output over RPC instead of pasting an IPFS preview.
 
-After updating `glyphs.yml`, run `ruby scripts/gen_glyph_table.rb` and commit the refreshed README table.
-
 ---
 
 ## 4 Commit & Push

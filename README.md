@@ -103,15 +103,10 @@ _The file is machine‑readable; GUIs and wallets consume it in one request._
 
 ### Glyphs
 
-<!-- GLYPH_TABLE_START -->
+The canonical registry lives in [`glyphs.yml`](./glyphs.yml).
 
-### utility
-
-| name | network | contract | repo | description |
-| ---- | ------- | -------- | ---- | ----------- |
-| Pprf | starknet-sepolia | `0x0596...5010F` | [repo](https://github.com/inshell-art/pprf) | Poseidon-based pseudo-random field glyph. render(params) -> [v], where v is a u32 in [0, 999_999] encoded as felt252 (6-digit fixed-point... |
-
-<!-- GLYPH_TABLE_END -->
+A human-friendly list (grouped by `kind`) is rendered on GitHub Pages:
+https://inshell-art.github.io/glyph-registry/
 
 ---
 

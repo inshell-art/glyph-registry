@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>GLYPH Registry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      color-scheme: light;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 2rem 1.5rem 3rem;
+      max-width: 1080px;
+      margin: 0 auto;
+      line-height: 1.55;
+      color: #0b1021;
+      background: linear-gradient(180deg, #f8f9fb 0%, #f3f4f8 100%);
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 0 0 0.25rem;
+      letter-spacing: -0.01em;
+    }
+    p {
+      margin: 0 0 0.75rem;
+    }
+    a {
+      color: #2741d9;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .intro {
+      margin-bottom: 1.25rem;
+    }
+    .kind {
+      margin-top: 2rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin: 0 0 0.4rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: baseline;
+      letter-spacing: -0.01em;
+    }
+    .kind-label {
+      font-size: 0.9rem;
+      color: #6b7280;
+      text-transform: lowercase;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04);
+    }
+    thead {
+      background: #f4f6fb;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.6rem 0.7rem;
+      font-size: 0.95rem;
+      vertical-align: top;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    th {
+      font-weight: 650;
+      color: #374151;
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.9em;
+      background: #f3f4f6;
+      padding: 0.1rem 0.3rem;
+      border-radius: 4px;
+    }
+    .error {
+      color: #b91c1c;
+      padding: 0.75rem 0;
+      font-weight: 600;
+    }
+    .muted {
+      color: #6b7280;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 720px) {
+      table {
+        font-size: 0.9rem;
+      }
+      th, td {
+        padding: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>GLYPH Registry</h1>
+  <div class="intro">
+    <p class="muted">
+      Canonical data lives in <code>glyphs.yml</code> on
+      <a href="https://github.com/inshell-art/glyph-registry" target="_blank" rel="noopener noreferrer">GitHub</a>.
+      This page renders the same list directly from the YAML.
+    </p>
+  </div>
+
+  <div id="glyph-viewer">
+    <p>Loading glyphs…</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="./glyphs.js"></script>
+</body>
+</html>
