@@ -3,7 +3,7 @@
 GLYPH is closer to a shared sketchbook than a platform.
 
 If you deploy a contract that implements `IGlyph` and add a stanza to
-`glyph.yml`, you’re in. There is no curation gate; the only rules are:
+`glyphs.yml`, you’re in. There is no curation gate; the only rules are:
 
 - Your contract is immutable (or behaves immutably for `render`).
 - Your description is honest about what it returns and how to call it.
@@ -31,7 +31,7 @@ git checkout -b add/my-gradient-glyph
 
 ---
 
-## 3 Add an Entry to `glyph.yml`
+## 3 Add an Entry to `glyphs.yml`
 
 Append a YAML stanza at the end of the list:
 
@@ -57,14 +57,14 @@ Append a YAML stanza at the end of the list:
 `kind` is a coarse category for tooling: `svg`, `utility`, `palette`, `layout`, or `other`.
 The `example` block is optional but encouraged—pack the calldata you use most often and show others exactly how to reproduce the raw `<svg>` output over RPC instead of pasting an IPFS preview.
 
-After updating `glyph.yml`, run `ruby scripts/gen_glyph_table.rb` and commit the refreshed README table.
+After updating `glyphs.yml`, run `ruby scripts/gen_glyph_table.rb` and commit the refreshed README table.
 
 ---
 
 ## 4 Commit & Push
 
 ```bash
-git add glyph.yml
+git add glyphs.yml
 git commit -m "feat: add GradientGlyph registry entry"
 git push origin add/my-gradient-glyph
 ```
@@ -85,7 +85,7 @@ In the PR description include:
 
 The PR will pass if:
 
-1. `glyph.yml` is valid YAML.
+1. `glyphs.yml` is valid YAML.
 2. `name` and `contract` are unique.
 3. `repo` URL returns HTTP 200.
 

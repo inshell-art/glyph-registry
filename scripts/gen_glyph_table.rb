@@ -3,7 +3,7 @@
 
 require "yaml"
 
-GLYPH_FILE = File.expand_path("../glyph.yml", __dir__)
+GLYPH_FILE = File.expand_path("../glyphs.yml", __dir__)
 README_FILE = File.expand_path("../README.md", __dir__)
 START_MARKER = "<!-- GLYPH_TABLE_START -->"
 END_MARKER = "<!-- GLYPH_TABLE_END -->"

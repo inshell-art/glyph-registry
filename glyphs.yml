@@ -1,4 +1,4 @@
-# GLYPH Registry — glyph.yml
+# GLYPH Registry — glyphs.yml
 # ------------------------------------------------------------
 # Add new entries via PR. Each stanza must include **name, kind, contract,
 # network, repo, description**.  Delete the leading “#” on your stanza.
