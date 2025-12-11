@@ -1,4 +1,4 @@
-# GLYPH Registry — glyphs.yml
+# GLYPH Registry — glyph.yml
 # ------------------------------------------------------------
 # Add new entries via PR. Each stanza must include **name, kind, contract,
 # network, repo, description**.  Delete the leading “#” on your stanza.
@@ -21,3 +21,21 @@
 #         --address 0x0123abcd... \
 #         --function render \
 #         --calldata param1 param2
+
+- name: Pprf
+  kind: utility
+  author: "@inshell-art"
+  contract: "0x05968E1338E0791644F0fc8e561631a0092Dc63F90a4C5B9Af259C7bd225010F"
+  network: "starknet-sepolia"
+  repo: "https://github.com/inshell-art/pprf"
+  description: |
+    Poseidon-based pseudo-random field glyph.
+    render(params) -> [v], where v is a u32 in [0, 999_999] encoded as felt252
+    (6-digit fixed-point precision with scale=1_000_000).
+  example:
+    call: "[123456789]"
+    how_to_run: |
+      sncast --network sepolia call \
+        --address 0x05968E1338E0791644F0fc8e561631a0092Dc63F90a4C5B9Af259C7bd225010F \
+        --function render \
+        --calldata 123456789
