@@ -22,7 +22,7 @@
 #         --function render \
 #         --calldata param1 param2
 
-- name: Pprf
+- name: pprf
   kind: utility
   author: "@inshell-art"
   contract: "0x05968E1338E0791644F0fc8e561631a0092Dc63F90a4C5B9Af259C7bd225010F"
@@ -39,3 +39,20 @@
         --address 0x05968E1338E0791644F0fc8e561631a0092Dc63F90a4C5B9Af259C7bd225010F \
         --function render \
         --calldata 123456789
+
+- name: step_curve
+  kind: svg
+  author: "@inshell-art"
+  contract: "0x503bf054e089ea19c7df43091a57cd106cfc2672fea9b1a9633c3dbb7ac335"
+  network: "starknet-sepolia"
+  repo: "https://github.com/inshell-art/step-curve"
+  description: |
+    Minimal glyph that converts ordered nodes into SVG path-data ("d").
+    render(params) -> ByteArray of SVG path `d` string.
+  example:
+    call: "[5, 0, 0, 100, 100]"
+    how_to_run: |
+      sncast --network sepolia call \
+        --address 0x503bf054e089ea19c7df43091a57cd106cfc2672fea9b1a9633c3dbb7ac335 \
+        --function render \
+        --calldata 5 0 0 100 100
